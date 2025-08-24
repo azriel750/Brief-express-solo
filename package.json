@@ -1,0 +1,31 @@
+{
+  "name": "backend-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx index.ts",
+    "dev": "tsx watch index.ts",
+    "build:js": "rollup -c",
+    "watch:css": "sass --watch src/scss/:public/css/",
+    "build:css": "sass src/scss/:public/css/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "rollup": "^4.46.1",
+    "sass": "^1.89.2",
+    "tslib": "^2.8.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3"
+  }
+}
