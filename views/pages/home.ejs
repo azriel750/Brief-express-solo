@@ -1,8 +1,58 @@
-<%- include("../partials/head", {title: "brief"}) %>
+<%- include("../partials/head", {title: "TalentHub" }) %>
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    twemoji.parse(document.body, {
+      folder: 'svg',
+      ext: '.svg'
+    });
+  });
+</script>
+<header class="header">
+  <div class="logo">🧑‍🎓 TalentHub</div>
+  <nav class="nav">
+    <a href="/Annonces">Les annonces</a>
+    <a href="/create" class="btn-primary">Déposer une annonce</a>
+  </nav>
+</header>
 
-<h1>Test EJS</h1>
-<p>Message du controller : <%= message %></p>
+<section class="banner">
+  <div class="banner-content">
+    <h1>Trouvez la mission qui vous correspond.</h1>
+    <p>Découvrez des annonces claires, accessibles et adaptées à vos talents. Publiez, éditez ou supprimez vos offres en toute simplicité.</p>
+    <a href="/Annonces" class="btn-secondary">Voir les Offres</a>
+  </div>
+</section>
+
+<section class="annonces">
+  <h2>Les Dernières annonces</h2>
+  <ul class="annonces-list">
+    <li class="annonce-card">
+      <div>
+        <h3>Titre Annonce 1</h3>
+        <p>Description rapide...</p>
+        <a href="/annonces/1" class="btn-link">Voir plus</a>
+      </div>
+    </li>
+    <li class="annonce-card">
+      <div>
+        <h3>Titre Annonce 2</h3>
+        <p>Description rapide...</p>
+        <a href="/annonces/2" class="btn-link">Voir plus</a>
+      </div>
+    </li>
+    <li class="annonce-card">
+      <div>
+        <h3>Titre Annonce 3</h3>
+        <p>Description rapide...</p>
+        <a href="/annonces/3" class="btn-link">Voir plus</a>
+      </div>
+    </li>
+  </ul>
+  <div class="cta-center">
+    <a href="/Annonces" class="btn-primary">Consulter toutes les annonces</a>
+  </div>
+</section>
 
 <% console.log("[Vue] Vue index.ejs en cours de rendu") %>
-
 <%- include ("../partials/footer") %>
