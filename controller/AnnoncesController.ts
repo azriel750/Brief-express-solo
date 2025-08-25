@@ -1,85 +1,67 @@
-
-
+import z from "zod";
 import { Controller } from "../libs/controller";
-
+import { jobAds } from "../src/data/Data";
 
 export class AnnoncesController extends Controller {
   public browseAnnonces() {
-    const success = this.request.query.success;
-    
-
     this.response.render("pages/Annonces.ejs", {
-      Annonces,
+      annonces: jobAds,
     });
   }
 
   public readAnnonce() {
-    // Je récupère l'ID du livre réclamé (dans l'URL)
-    const requestedId = this.request.params.id;
+    const requestedId = parseInt(this.request.params.id);
+    const annonce = jobAds[requestedId];
 
-    // J'exploite l'ID réclamé pour récupérer le livre dans "la base de données"
-    const Annonce = Annonce.find((book) => {
-      return book.id == parseInt(requestedId);
-    });
-
-    // Si je n'ai pas trouvé le livre
-    if (!Annonce) {
-      this.response.send(`Le livre demandé n'existe pas`);
+    if (!annonce) {
+      this.response.send("L'annonce demandée n'existe pas");
+      return;
     }
 
-    // Puisque j'ai trouvé le livre, j'utilise son ID pour identifier les commentaires correspondants au livre
-
-  
-
-    // Si j'ai trouvé le livre
-    this.response.render("pages/Annonce.ejs", {
-      Annonces,
-      
+    this.response.render("pages/Annonces.ejs", {
+      annonce,
     });
+  }
+
+  public createAnnonce() {
+    this.response.render("pages/AnnonceCreate.ejs");
+  }
+
+  public addAnnonce() {
+    const AnnonceSchema = z.object({
+      titre: z.string().min(1, "Titre requis").max(50, "50 caractères max"),
+      description: z.string().min(1, "Description requise"),
+      lieu: z.string().min(1, "Lieu requis"),
+      typeContrat: z.string().min(1, "Type de contrat requis"),
+    });
+
+    const result = AnnonceSchema.safeParse(this.request.body);
+
+    if (!result.success) {
+      return this.response.render("pages/AnnonceCreate.ejs", {
+        errors: result.error.format(),
+      });
+    }
+
+    const data = result.data;
+
+    jobAds.push({
+      ...data,
+      datePublication: new Date().toISOString(),
+      entreprise: {
+        nom: "Nouvelle entreprise",
+        coordonnees: { email: "", telephone: "", adresse: "" },
+      }
+    });
+
+    this.response.redirect("/annonces?success=true");
   }
 
   public editAnnonce() {
-    this.response.send("Bienvenue sur l'éditon d'un livre");
-  }
-
-  // Afficher le formulaire pour créer un livre (ditribue une vue)
-  public createAnnonce() {
-    this.response.render("pages/bookCreate.ejs");
-  }
-
- BookShema= z.object({
-title: z.string().min(1, "Titre requis").max(15, "15 caractères maximum"),
-  author: z.string().min(1, "Auteur requis").max(15, "15 caractères maximum"),
-
-});
-
-const result = AnnonceSchema.safeParse(this.request.body);
-if (!result.success) {
-
-  const error= z.treeifyError(result)
-
-  
-   error.properties.title.errors[0]; 
-  error.properties.author.errors[0]; 
-return;
-}
-const data = this.result.data;
-
-// Traitez les données puis redirigez l’utilisateur
-
-  // Affiche rien, on traîte la soumission du formulaire d'ajout d'un livre
-  public addAnnonce() {
-    const newAnnonce = {
-      id: Annonces.length + 1,
-      title: this.request.body.title,
-    };
-
-    Annonces.push(newAnnonce);
-
-    this.response.redirect("/Annonces?success=true");
+    this.response.send("Bienvenue sur l'édition d'une annonce");
   }
 
   public deleteAnnonce() {
-    this.response.send("Bienvenue sur la suppression d'un livre");
+    this.response.send("Bienvenue sur la suppression d'une annonce");
   }
 }

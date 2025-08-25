@@ -1,0 +1,14 @@
+<h1><%= annonce.titre %></h1>
+<p><%= annonce.description %></p>
+<p><strong>Date :</strong> <%= annonce.datePublication %></p>
+<p><strong>Lieu :</strong> <%= annonce.lieu %></p>
+<p><strong>Entreprise :</strong> <%= annonce.entreprise.nom %></p>
+
+<h3>Compétences requises :</h3>
+<ul>
+  <% annonce.competencesRequises.forEach(c => { %>
+    <li><%= c %></li>
+  <% }) %>
+</ul>
+
+<p><strong>Comment postuler :</strong> <%= annonce.commentPostuler %></p>

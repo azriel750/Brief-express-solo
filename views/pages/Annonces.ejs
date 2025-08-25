@@ -1,0 +1,13 @@
+<h1>Liste des annonces</h1>
+
+<div class="annonces">
+  <% annonces.forEach((a, index) => { %>
+    <div class="card">
+      <h2><%= a.titre %></h2>
+      <p><%= a.description %></p>
+      <p><strong>Lieu :</strong> <%= a.lieu %></p>
+      <p><strong>Type :</strong> <%= a.typeContrat %></p>
+      <a href="/annonces/<%= index %>">Voir plus</a>
+    </div>
+  <% }) %>
+</div>
