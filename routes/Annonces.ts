@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { AnnoncesController } from "../controller/AnnoncesController";
 
-
 // Initialiastion du bookRouter Express
 const AnnoncesRouter = Router();
 
@@ -29,16 +28,16 @@ AnnoncesRouter.get("/:id", (request, response) => {
   controller.readAnnonce();
 });
 
-// Edit
-AnnoncesRouter.put("/:id", (request, response) => {
-  const controller = new AnnoncesController(request, response);
-  controller.editAnnonce();
+// Routes dans AnnoncesRouter
+AnnoncesRouter.get("/:id/Edit", (req, res) => {
+  new AnnoncesController(req, res).editAnnonce();
 });
 
-// Delete
-AnnoncesRouter.delete("/:id", (request, response) => {
-  const controller = new AnnoncesController(request, response);
-  controller.deleteAnnonce();
+AnnoncesRouter.put("/:id", (req, res) => {
+  new AnnoncesController(req, res).updateAnnonce();
 });
 
+AnnoncesRouter.delete("/:id", (req, res) => {
+  new AnnoncesController(req, res).deleteAnnonce();
+});
 export default AnnoncesRouter;
