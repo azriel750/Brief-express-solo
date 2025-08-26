@@ -1,6 +1,7 @@
 import { string } from "zod";
 
 export interface JobAd {
+  id:number;
   titre: string;
   description: string;
   datePublication: string; 
@@ -19,6 +20,7 @@ export interface JobAd {
 
 export const jobAds: JobAd[] = [
   {
+    id:1,
     titre: "Développeur Web Front-End (H/F)",
     description:
       "Nous recherchons un développeur web front-end passionné par les technologies modernes pour rejoindre notre équipe.",
@@ -38,6 +40,7 @@ export const jobAds: JobAd[] = [
    
   },
   {
+    id:2,
     titre: "UI/UX Designer (H/F)",
     description:
       "Nous cherchons un(e) designer créatif(ve) pour concevoir des interfaces intuitives et esthétiques sur nos projets web et mobiles.",
@@ -56,6 +59,7 @@ export const jobAds: JobAd[] = [
    
   },
   {
+    id:3,
     titre: "Chef de projet IT (H/F)",
     description:
       "Nous recrutons un chef de projet expérimenté pour piloter des projets digitaux complexes et coordonner nos équipes.",

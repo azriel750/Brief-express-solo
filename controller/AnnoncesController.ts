@@ -1,27 +1,34 @@
 import z from "zod";
 import { Controller } from "../libs/controller";
-import { jobAds } from "../src/data/Data";
+import { jobAds } from "../src/Data/Data";
 
 export class AnnoncesController extends Controller {
-  public browseAnnonces() {
+   public browseAnnonces() {
+   
+    const AnnoncesTriees = [...jobAds].sort((a, b) => {
+      return new Date(b.datePublication).getTime() - new Date(a.datePublication).getTime();
+    });
+
     this.response.render("pages/Annonces.ejs", {
-      annonces: jobAds,
+      Annonces: AnnoncesTriees,
     });
   }
 
-  public readAnnonce() {
-    const requestedId = parseInt(this.request.params.id);
-    const annonce = jobAds[requestedId];
 
-    if (!annonce) {
-      this.response.send("L'annonce demandée n'existe pas");
-      return;
-    }
+readAnnonce() {
+  const id = Number(this.request.params.id); // ✅ convertir en nombre
+  console.log("📌 ID reçu :", id);
 
-    this.response.render("pages/Annonces.ejs", {
-      annonce,
-    });
+  const annonce = jobAds.find(a => a.id === id);
+  console.log("📌 Annonce trouvée :", annonce);
+
+  if (!annonce) {
+    return this.response.status(404).send("Annonce non trouvée");
   }
+
+  this.response.render("pages/annonce", { annonce });
+}
+
 
   public createAnnonce() {
     this.response.render("pages/AnnonceCreate.ejs");
@@ -46,6 +53,7 @@ export class AnnoncesController extends Controller {
     const data = result.data;
 
     jobAds.push({
+      id:Date.now(),
       ...data,
       datePublication: new Date().toISOString(),
       entreprise: {

@@ -6,7 +6,7 @@ import AnnoncesRouter from "./Annonces";
 const router = Router();
 
 router.use(globalRouter);
-router.use(AnnoncesRouter);
+router.use("/Annonces",AnnoncesRouter);
 
 
 export default router;
