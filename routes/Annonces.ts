@@ -1,43 +1,50 @@
 import { Router } from "express";
 import { AnnoncesController } from "../controller/AnnoncesController";
 
-// Initialiastion du bookRouter Express
 const AnnoncesRouter = Router();
 
-// Browse
-AnnoncesRouter.get("/", (request, response) => {
-  const controller = new AnnoncesController(request, response);
-  controller.browseAnnonces();
+// 🔹 Afficher toutes les annonces
+AnnoncesRouter.get("/", (req, res) => {
+  console.log("📌 Route GET /annonces appelée");
+  new AnnoncesController(req, res).browseAnnonces();
 });
 
-// Add GET - afficher le formulaire
-AnnoncesRouter.get("/add", (request, response) => {
-  const controller = new AnnoncesController(request, response);
-  controller.createAnnonce();
+// 🔹 Formulaire création d'une annonce
+AnnoncesRouter.get("/create", (req, res) => {
+  console.log("📌 Route GET /annonces/create appelée");
+  new AnnoncesController(req, res).createAnnonce();
 });
 
-// Add POST - traiter le formulaire
-AnnoncesRouter.post("/", (request, response) => {
-  const controller = new AnnoncesController(request, response);
-  controller.addAnnonce();
+// 🔹 Traiter le formulaire de création
+AnnoncesRouter.post("/create", (req, res) => {
+  console.log("📌 Route POST /annonces/create appelée");
+  console.log("📩 Body reçu :", req.body);
+  new AnnoncesController(req, res).addAnnonce();
 });
 
-// Read
-AnnoncesRouter.get("/:id", (request, response) => {
-  const controller = new AnnoncesController(request, response);
-  controller.readAnnonce();
-});
-
-// Routes dans AnnoncesRouter
-AnnoncesRouter.get("/:id/Edit", (req, res) => {
+// 🔹 Formulaire édition d'une annonce
+AnnoncesRouter.get("/:id/edit", (req, res) => {
+  console.log(`📌 Route GET /annonces/${req.params.id}/edit appelée`);
   new AnnoncesController(req, res).editAnnonce();
 });
 
-AnnoncesRouter.put("/:id", (req, res) => {
+// 🔹 Traiter la mise à jour de l'annonce
+AnnoncesRouter.post("/:id/edit", (req, res) => {
+  console.log(`📌 Route POST /annonces/${req.params.id}/edit appelée`);
+  console.log("📩 Body reçu :", req.body);
   new AnnoncesController(req, res).updateAnnonce();
 });
 
-AnnoncesRouter.delete("/:id", (req, res) => {
+// 🔹 Supprimer une annonce
+AnnoncesRouter.post("/:id/delete", (req, res) => {
+  console.log(`📌 Route POST /annonces/${req.params.id}/delete appelée`);
   new AnnoncesController(req, res).deleteAnnonce();
 });
+
+// 🔹 Afficher une annonce détaillée
+AnnoncesRouter.get("/:id", (req, res) => {
+  console.log(`📌 Route GET /annonces/${req.params.id} appelée`);
+  new AnnoncesController(req, res).readAnnonce();
+});
+
 export default AnnoncesRouter;

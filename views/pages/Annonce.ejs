@@ -1,39 +1,24 @@
-<div class="actions">
-  <a href="/Annonces/<%= annonce.id %>/Edit" class="btn btn-edit">Éditer</a>
-  <form action="/Annonces/<%= annonce.id %>?_method=DELETE" method="POST"
-    onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?')">
-    <button type="submit" class="btn btn-delete">Supprimer</button>
-  </form>
-</div>
-<div class="container">
-  <h1>
-    <%= annonce.titre %>
-  </h1>
-  <p>
-    <%= annonce.description %>
-  </p>
-  <p><strong>Date :</strong>
-    <%= new Date(annonce.datePublication).toLocaleDateString("fr-FR") %>
-  </p>
-  <p><strong>Lieu :</strong>
-    <%= annonce.lieu %>
-  </p>
-  <p><strong>Type de Contrat :</strong>
-    <%= annonce.typeContrat %>
-  </p>
-  <p><strong>Salaire :</strong>
-    <%= annonce.salaire || "Non précisé" %>
-  </p>
-  <p><strong>Entreprise :</strong>
-    <%= annonce.entreprise.nom %>
-  </p>
-  <p><strong>Email :</strong> <a href="mailto:<%= annonce.entreprise.coordonnees.email %>">
-      <%= annonce.entreprise.coordonnees.email %>
-    </a></p>
-  <p><strong>Téléphone :</strong> <a href="tel:<%= annonce.entreprise.coordonnees.telephone %>">
-      <%= annonce.entreprise.coordonnees.telephone %>
-    </a></p>
-  <p><strong>Adresse :</strong>
-    <%= annonce.entreprise.coordonnees.adresse %>
-  </p>
-</div>
+<%- include("../partials/head", {title: "TalentHub" }) %>
+<div class="annonce-container">
+  <div class="annonce-details">
+    <div class="annonce-header">
+      <h2><%= annonce.titre %></h2>
+      <div class="actions">
+        <a href="/Annonces/<%= annonce.id %>/edit" class="btn btn-edit">Éditer</a>
+        <form action="/Annonces/<%= annonce.id %>/delete" method="POST"
+          onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?')">
+          <button type="submit" class="btn btn-delete">Supprimer</button>
+        </form>
+      </div>
+    </div>
+
+    <p><strong>Description :</strong> <%= annonce.description %></p>
+    <p><strong>Lieu :</strong> <%= annonce.lieu %></p>
+    <p><strong>Type :</strong> <%= annonce.typeContrat %></p>
+    <p><strong>Salaire :</strong> <%= annonce.salaire %></p>
+    <p><strong>Entreprise :</strong> <%= annonce.entreprise.nom %></p>
+    <p><strong>Email :</strong> <%= annonce.entreprise.coordonnees.email %></p>
+    <p><strong>Téléphone :</strong> <%= annonce.entreprise.coordonnees.telephone %></p>
+    <p><strong>Adresse :</strong> <%= annonce.entreprise.coordonnees.adresse %></p>
+
+    <a href="/Annonces

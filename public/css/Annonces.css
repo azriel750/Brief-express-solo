@@ -1,0 +1,36 @@
+.annonces-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.annonce-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.annonce-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.annonce-card h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+.annonce-card p {
+  margin: 0.3rem 0;
+  color: #555;
+}
+.annonce-card small {
+  display: block;
+  margin-top: 0.5rem;
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/*# sourceMappingURL=Annonces.css.map */

@@ -10,9 +10,6 @@ const app = Express();
 
 
 const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Serveur lancé sur le port ${PORT}`);
-});
 
 const __filename = fileURLToPath(import.meta.url);
 

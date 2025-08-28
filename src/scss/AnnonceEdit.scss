@@ -1,0 +1,50 @@
+.form-annonce {
+  width: 800px;
+  max-width: 95%;
+  padding: 32px 48px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  opacity: 1;
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      font-weight: bold;
+    }
+
+    input, textarea {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+  }
+
+  button {
+    align-self: flex-start;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+}

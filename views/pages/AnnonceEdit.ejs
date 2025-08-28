@@ -1,52 +1,71 @@
-<h1>Modifier l'annonce : <%= annonce.titre %></h1>
+<%- include("../partials/head", {title: "TalentHub" }) %>
 
-<form action="/Annonces/<%= annonce.id %>?_method=PUT" method="POST">
-  <div>
+
+<form action="<%= annonce ? '/Annonces/' + annonce.id + '/edit' : '/Annonces/create' %>" method="POST" class="form-annonce">
+  <h1>
+  <%= annonce ? "Modifier l'annonce : " + annonce.titre : "Créer une nouvelle annonce" %>
+</h1>
+  <div class="form-field">
     <label for="titre">Titre :</label>
-    <input type="text" id="titre" name="titre" value="<%= annonce.titre %>" required>
+    <input type="text" id="titre" name="titre" value="<%= annonce ? annonce.titre : '' %>" required>
   </div>
 
-  <div>
+  <div class="form-field">
     <label for="description">Description :</label>
-    <textarea id="description" name="description" required><%= annonce.description %></textarea>
+    <textarea id="description" name="description" required><%= annonce ? annonce.description : '' %></textarea>
   </div>
 
-  <div>
+  <div class="form-field">
     <label for="lieu">Lieu :</label>
-    <input type="text" id="lieu" name="lieu" value="<%= annonce.lieu %>" required>
+    <input type="text" id="lieu" name="lieu" value="<%= annonce ? annonce.lieu : '' %>" required>
   </div>
 
-  <div>
+  <div class="form-field">
     <label for="typeContrat">Type de contrat :</label>
-    <input type="text" id="typeContrat" name="typeContrat" value="<%= annonce.typeContrat %>" required>
+    <input type="text" id="typeContrat" name="typeContrat" value="<%= annonce ? annonce.typeContrat : '' %>" required>
   </div>
 
-  <div>
+  <div class="form-field">
     <label for="salaire">Salaire :</label>
-    <input type="text" id="salaire" name="salaire" value="<%= annonce.salaire %>">
+    <input type="text" id="salaire" name="salaire" value="<%= annonce ? annonce.salaire : '' %>">
   </div>
 
-  <div>
+  <div class="form-field">
     <label for="entrepriseNom">Entreprise :</label>
-    <input type="text" id="entrepriseNom" name="entrepriseNom" value="<%= annonce.entreprise.nom %>" required>
+    <input type="text" id="entrepriseNom" name="entrepriseNom" value="<%= annonce ? annonce.entreprise.nom : '' %>" required>
   </div>
 
-  <div>
+  <div class="form-field">
     <label for="email">Email :</label>
-    <input type="email" id="email" name="email" value="<%= annonce.entreprise.coordonnees.email %>">
+    <input type="email" id="email" name="email" value="<%= annonce ? annonce.entreprise.coordonnees.email : '' %>">
   </div>
 
-  <div>
+  <div class="form-field">
     <label for="telephone">Téléphone :</label>
-    <input type="text" id="telephone" name="telephone" value="<%= annonce.entreprise.coordonnees.telephone %>">
+    <input type="text" id="telephone" name="telephone" value="<%= annonce ? annonce.entreprise.coordonnees.telephone : '' %>">
   </div>
 
-  <div>
+  <div class="form-field">
     <label for="adresse">Adresse :</label>
-    <input type="text" id="adresse" name="adresse" value="<%= annonce.entreprise.coordonnees.adresse %>">
+    <input type="text" id="adresse" name="adresse" value="<%= annonce ? annonce.entreprise.coordonnees.adresse : '' %>">
   </div>
 
-  <button type="submit">Modifier l'annonce</button>
+  <div class="form-field">
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" required>
+  </div>
+
+  <button type="submit"><%= annonce ? "Modifier l'annonce" : "Créer l'annonce" %></button>
 </form>
 
-<a href="/Annonces/<%= annonce.id %>">Annuler</a>
+<% if (annonce) { %>
+  <!-- Bouton de suppression -->
+  <form action="/Annonces/<%= annonce.id %>/delete" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?');">
+    <button type="submit" style="background-color:red;color:white;">Supprimer l'annonce</button>
+  </form>
+
+  <!-- Lien annuler édition -->
+  <a href="/Annonces/<%= annonce.id %>">Annuler</a>
+<% } else { %>
+  <a href="/Annonces">Annuler</a>
+<% } %>
