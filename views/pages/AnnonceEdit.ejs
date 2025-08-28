@@ -1,7 +1,7 @@
 <%- include("../partials/head", {title: "TalentHub" }) %>
 
 
-<form action="<%= annonce ? '/Annonces/' + annonce.id + '/edit' : '/Annonces/create' %>" method="POST" class="form-annonce">
+<form action="<%= annonce ? '/Annonces/' + annonce.id + '/editForm' : '/Annonces/create' %>" method="POST" class="form-annonce">
   <h1>
   <%= annonce ? "Modifier l'annonce : " + annonce.titre : "Créer une nouvelle annonce" %>
 </h1>

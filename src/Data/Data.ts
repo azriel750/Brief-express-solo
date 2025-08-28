@@ -16,6 +16,7 @@ export interface JobAd {
       adresse: string;
     };
   };
+  
 }
 
 export const jobAds: JobAd[] = [
