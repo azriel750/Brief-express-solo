@@ -36,7 +36,7 @@ export class AnnoncesController extends Controller {
     const annonce = jobAds.find(a => a.id === id);
     if (!annonce) return this.response.status(404).send("Annonce non trouvée");
 
-    this.response.render("pages/annonce.ejs", { annonce });
+    this.response.render("pages/Annonce.ejs", { annonce });
   }
 
 
