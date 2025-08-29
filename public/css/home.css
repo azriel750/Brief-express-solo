@@ -15,40 +15,77 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
-  color: #000000;
+  height: 60px;
+  padding: 0 1rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  position: relative;
 }
 .header .logo {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
+  color: rgba(21, 77, 113, 0.6509803922);
 }
 .header .menu-toggle {
+  display: block;
   background: none;
   border: none;
-  font-size: 1.5rem;
-  color: #fff;
+  font-size: 1.8rem;
   cursor: pointer;
+  color: rgba(21, 77, 113, 0.6509803922);
 }
 .header .nav {
   display: none;
   flex-direction: column;
-  background: #ffffff;
   position: absolute;
   top: 60px;
   right: 0;
-  width: 200px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  width: 180px;
+  z-index: 10;
 }
 .header .nav a {
-  padding: 1rem;
+  padding: 0.5rem 0;
   text-decoration: none;
-  display: block;
+  color: rgba(21, 77, 113, 0.6509803922);
+  font-weight: bold;
+  text-align: center;
+  transition: 0.2s;
 }
 .header .nav a:hover {
+  color: rgba(5.0149253731, 18.3880597015, 26.9850746269, 0.6509803922);
+}
+.header .nav a.btn-primary {
   background: rgba(21, 77, 113, 0.6509803922);
-  color: #fff;
+  color: white;
+  border-radius: 5px;
+}
+.header .nav a.btn-primary:hover {
+  background: rgba(13.0074626866, 47.6940298507, 69.9925373134, 0.6509803922);
 }
 .header .nav.active {
   display: flex;
+}
+@media (min-width: 768px) {
+  .header .menu-toggle {
+    display: none;
+  }
+  .header .nav {
+    display: flex !important;
+    flex-direction: row;
+    gap: 1rem;
+    position: static;
+    border: none;
+    padding: 0;
+    width: auto;
+  }
+  .header .nav a {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }
 
 .banner {
@@ -58,8 +95,11 @@ body {
   padding: 4rem 1.5rem;
 }
 .banner .banner-content {
-  max-width: 500px;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 25px;
+  background-color: rgba(249, 246, 243, 0.35);
+  border-radius: 10px;
 }
 .banner .banner-content h1 {
   font-size: 1.8rem;
@@ -70,6 +110,11 @@ body {
 }
 
 .annonces {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 20% s;
   padding: 2rem 1rem;
   text-align: center;
 }
@@ -81,6 +126,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .annonces .annonces-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 .annonces .annonce-card {
   background: #fff;
@@ -88,13 +141,21 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: left;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
 .annonces .annonce-card h3 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
+}
+.annonces .annonce-card p {
+  margin: 0;
 }
 .annonces .annonce-card .btn-link {
-  display: inline-block;
-  margin-top: 0.5rem;
+  margin-left: auto;
   color: rgba(21, 77, 113, 0.6509803922);
   text-decoration: none;
 }
@@ -105,8 +166,7 @@ body {
   margin-top: 2rem;
 }
 
-.btn-primary,
-.btn-secondary {
+.btn-primary, .btn-secondary {
   display: inline-block;
   padding: 0.6rem 1rem;
   border-radius: 5px;
@@ -124,30 +184,13 @@ body {
   background: white;
   color: black;
   border: 1px solid rgba(21, 77, 113, 0.6509803922);
+  transition: 0.2s;
 }
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.3490196078);
 }
 
-img.emoji {
-  height: 1.2em;
-  width: auto;
-  margin: 0 0.1em;
-  vertical-align: -0.1em;
-}
-
 @media (min-width: 768px) {
-  .header .menu-toggle {
-    display: none;
-  }
-  .header .nav {
-    display: flex;
-    position: static;
-    flex-direction: row;
-  }
-  .header .nav a {
-    margin-left: 1rem;
-  }
   .annonces-list {
     flex-direction: row;
     justify-content: center;

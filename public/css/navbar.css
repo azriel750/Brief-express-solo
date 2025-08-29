@@ -1,0 +1,78 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 1rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+.header .logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgba(21, 77, 113, 0.6509803922);
+}
+.header .menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: rgba(21, 77, 113, 0.6509803922);
+}
+.header .nav {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  width: 180px;
+  z-index: 10;
+}
+.header .nav a {
+  padding: 0.5rem 0;
+  text-decoration: none;
+  color: rgba(21, 77, 113, 0.6509803922);
+  font-weight: bold;
+  text-align: center;
+  transition: 0.2s;
+}
+.header .nav a:hover {
+  color: rgba(5.0149253731, 18.3880597015, 26.9850746269, 0.6509803922);
+}
+.header .nav a.btn-primary {
+  background: rgba(21, 77, 113, 0.6509803922);
+  color: white;
+  border-radius: 5px;
+}
+.header .nav a.btn-primary:hover {
+  background: rgba(13.0074626866, 47.6940298507, 69.9925373134, 0.6509803922);
+}
+.header .nav.active {
+  display: flex;
+}
+@media (min-width: 768px) {
+  .header .menu-toggle {
+    display: none;
+  }
+  .header .nav {
+    display: flex !important;
+    flex-direction: row;
+    gap: 1rem;
+    position: static;
+    border: none;
+    padding: 0;
+    width: auto;
+  }
+  .header .nav a {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/*# sourceMappingURL=navbar.css.map */

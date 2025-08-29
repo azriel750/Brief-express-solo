@@ -23,7 +23,6 @@ const AnnonceSchema = z.object({
 
 export class AnnoncesController extends Controller {
 
-  // Liste annonces
   public browseAnnonces() {
     const AnnoncesTriees = [...jobAds].sort(
       (a, b) => new Date(b.datePublication).getTime() - new Date(a.datePublication).getTime()
@@ -31,7 +30,7 @@ export class AnnoncesController extends Controller {
     this.response.render("pages/Annonces.ejs", { Annonces: AnnoncesTriees, total: AnnoncesTriees.length });
   }
 
-  // Lire une annonce
+ 
   public readAnnonce() {
     const id = Number(this.request.params.id);
     const annonce = jobAds.find(a => a.id === id);
@@ -40,12 +39,12 @@ export class AnnoncesController extends Controller {
     this.response.render("pages/annonce.ejs", { annonce });
   }
 
-  // Formulaire création
+
   public createAnnonce() {
     this.response.render("pages/AnnonceEdit.ejs", { annonce: null, errors: null });
   }
 
-  // Ajouter annonce
+
   public async addAnnonce() {
     const result = AnnonceSchema.safeParse(this.request.body);
     if (!result.success) {
@@ -78,7 +77,6 @@ export class AnnoncesController extends Controller {
     this.response.redirect(`/Annonces/${newId}`);
   }
 
-  // Étape 1 : formulaire mot de passe pour éditer ou supprimer
   public editAnnonce() {
     const id = Number(this.request.params.id);
     const annonce = jobAds.find(a => a.id === id);
@@ -95,7 +93,7 @@ export class AnnoncesController extends Controller {
     this.response.render("pages/AnnoncePassword.ejs", { id, error: null, action: "delete" });
   }
 
-  // Étape 2 : vérifie mot de passe
+
   public async checkPassword() {
     const id = Number(this.request.params.id);
     const { password, action } = this.request.body;
@@ -118,7 +116,7 @@ export class AnnoncesController extends Controller {
     }
   }
 
-  // Étape 3 : vrai formulaire d'édition
+ 
   public editFormAnnonce() {
     const id = Number(this.request.params.id);
     const annonce = jobAds.find(a => a.id === id);
@@ -127,7 +125,6 @@ export class AnnoncesController extends Controller {
     this.response.render("pages/AnnonceEdit.ejs", { annonce, errors: null });
   }
 
-  // Étape 4 : appliquer la mise à jour
   public updateAnnonce() {
     const id = Number(this.request.params.id);
     const annonceIndex = jobAds.findIndex(a => a.id === id);

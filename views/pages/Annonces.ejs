@@ -1,10 +1,7 @@
+<%- include("../partials/head", {title: "TalentHub" }) %>
+  <%- include("../partials/navbar") %>
 
-  <%- include("../partials/head", {title: "TalentHub" }) %>
-
-<h1><%= total %> annonces disponibles</h1>
-
-  
-
+  <h1><%= total %> annonces disponibles</h1>
 <div class="annonces-grid">
   <% Annonces.forEach((a, index) => { %>
      <div class="annonce-card">

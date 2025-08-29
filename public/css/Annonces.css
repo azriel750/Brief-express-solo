@@ -1,36 +1,63 @@
 .annonces-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 15px;
+  margin: 25px auto;
+  max-width: 1200px;
+  justify-items: center;
 }
 
 .annonce-card {
-  border: 1px solid #ccc;
+  background: #fff;
   border-radius: 8px;
   padding: 1rem;
-  background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 620px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .annonce-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+.annonce-card .annonce-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
 .annonce-card h2 {
-  margin-bottom: 0.5rem;
   font-size: 1.2rem;
+  margin-bottom: 0.5rem;
   color: #333;
 }
 .annonce-card p {
-  margin: 0.3rem 0;
+  margin: 0.2rem 0;
   color: #555;
 }
-.annonce-card small {
-  display: block;
+.annonce-card a {
   margin-top: 0.5rem;
-  color: #888;
-  font-size: 0.85rem;
+  text-decoration: none;
+  color: rgba(21, 77, 113, 0.6509803922);
+  font-weight: bold;
+}
+.annonce-card a:hover {
+  text-decoration: underline;
+}
+.annonce-card strong {
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+  color: rgba(21, 77, 113, 0.6509803922);
+}
+
+@media (min-width: 768px) {
+  .annonces-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 
 /*# sourceMappingURL=Annonces.css.map */

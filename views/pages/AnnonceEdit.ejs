@@ -1,5 +1,6 @@
 <%- include("../partials/head", {title: "TalentHub" }) %>
 
+<%- include("../partials/navbar") %>
 
 <form action="<%= annonce ? '/Annonces/' + annonce.id + '/editForm' : '/Annonces/create' %>" method="POST" class="form-annonce">
   <h1>
